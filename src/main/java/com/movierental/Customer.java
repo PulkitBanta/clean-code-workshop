@@ -34,6 +34,16 @@ public class Customer {
     return result;
   }
 
+  public String htmlStatement() {
+    String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br/>";
+    for(Rental rental: rentals) {
+      result += rental.getMovie().getTitle() + " " + rental.amount() + "<br/>";
+    }
+    result += "Amount owed is <b>" + totalAmount() + "</b><br/>";
+    result += "You earned <b>" + totalFrequentRenterPoints() + "</b> frequent renter points";
+    return result;
+  }
+
   private int totalFrequentRenterPoints() {
     return rentals.stream().mapToInt(Rental::frequentRenterPoints).sum();
   }
