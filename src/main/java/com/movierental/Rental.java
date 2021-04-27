@@ -38,7 +38,7 @@ public class Rental {
     return thisAmount;
   }
 
-  int renterPoints() {
+  int frequentRenterPoints() {
     int frequentRenterPoints = 1;
     if (isBonusApplicable()) frequentRenterPoints++;
     return frequentRenterPoints;
