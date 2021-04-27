@@ -20,4 +20,4 @@ public class CustomerTest {
                 "You earned 4 frequent renter points", customer.statement());
     }
 
-} 
+}
