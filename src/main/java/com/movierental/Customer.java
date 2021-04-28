@@ -20,18 +20,7 @@ public class Customer {
   }
 
   public String statement() {
-    String result = "Rental Record for " + getName() + "\n";
-    for (Rental each : rentals) {
-      //show figures for this rental
-      result += "\t" + each.getMovie().getTitle() + "\t" +
-              each.amount() + "\n";
-    }
-
-    //add footer lines result
-    result += "Amount owed is " + totalAmount() + "\n";
-    result += "You earned " + totalFrequentRenterPoints()
-        + " frequent renter points";
-    return result;
+    return new TextStatement().display(getName(), rentals, totalAmount(), totalFrequentRenterPoints());
   }
 
   public String htmlStatement() {
@@ -52,4 +41,20 @@ public class Customer {
     return rentals.stream().mapToDouble(Rental::amount).sum();
   }
 
+  private class TextStatement {
+    public String display(String name, List<Rental> rentals, double totalAmount, double  totalFrequentRenterPoints) {
+      String result = "Rental Record for " + getName() + "\n";
+      for (Rental each : rentals) {
+        //show figures for this rental
+        result += "\t" + each.getMovie().getTitle() + "\t" +
+                each.amount() + "\n";
+      }
+
+      //add footer lines result
+      result += "Amount owed is " + totalAmount() + "\n";
+      result += "You earned " + totalFrequentRenterPoints()
+          + " frequent renter points";
+      return result;
+    }
+  }
 }
